@@ -1,0 +1,17 @@
+
+ .headbut:hover   {
+     --tw-text-opacity: 1;
+    color: rgba(73, 222, 128,var(--tw-text-opacity));
+    transition: all 0.5s ease-in;
+}
+
+.headbut:hover {
+    --tw-border-opacity: 1;
+    border-color: rgba(73, 222, 128, var(--tw-border-opacity));
+    border-left: none;
+    border-right:none ;
+    border-top: none;
+    border-bottom: 2px solid rgba(73, 222, 128, var(--tw-border-opacity));
+}
+
+
