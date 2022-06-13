@@ -9,11 +9,18 @@
     "@headlessui/react": "^1.6.4",
     "@heroicons/react": "^1.0.6",
     "heroicons-react": "^1.4.1",
+    "graphql": "^15.6.1",
+    "graphql-request": "^3.5.0",
+    "html-react-parser": "^1.4.0",
+    "mom  ent": "^2.29.1",
     "next": "latest",
     "prop-types": "^15.8.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-lottie": "^1.2.3"
+    "react-lottie": "^1.2.3",
+    "react-multi-carousel": "^2.6.5",
+    "sass": "^1.42.1",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "17.0.35",
