@@ -7,7 +7,6 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 const navigation = [
     { name: 'Home', href: '#' },
     { name: 'About', href: '#' },
-    { name: 'Trees', href: '#' },
 ]
 function Header() {
     return (
@@ -34,7 +33,7 @@ function Header() {
                                 </div>
                             </div>
                         </div>
-                        <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+                        <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8 overflow-hidden">
                             {navigation.map((item) => (
                                 <a key={item.name} href={item.href} className={styles.headbut} >
                                     {item.name}

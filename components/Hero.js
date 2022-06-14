@@ -2,7 +2,7 @@ import Header from './Header'
 import MainBody from './MainBody'
 import Lottie from 'react-lottie'
 import animationData from './assets/tree'
-import Cards from './Cards'
+
 function Hero() {
     const defaultOptions = {
         loop: true,

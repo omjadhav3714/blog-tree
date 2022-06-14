@@ -1,14 +1,10 @@
 import Hero from './../components/Hero'
-import Cards from '../components/Cards'
 import PostCard from '../components/PostCard'
 import PostWidget from '../components/PostWidget'
 import Categories from '../components/Categories'
+import { getPosts } from '../services'
 
-const posts = [
-  { title: 'Heelooo', excerpt: 'tesr' },
-  { title: 'Heelooo', excerpt: 'tesr' },
-]
-const Home = () => {
+export default function Home({ posts }) {
   return (
     <>
       <Hero />
@@ -17,8 +13,7 @@ const Home = () => {
           <div className='lg:col-span-8 col-span-1'>
             {posts.map((post, index) => (
               <div>
-                <PostCard post={post} />
-                {/* {post.title} */}
+                <PostCard post={post.node} key={post.title} />
               </div>
             ))}
           </div>
@@ -35,4 +30,11 @@ const Home = () => {
   )
 }
 
-export default Home
+
+
+export async function getStaticProps() {
+  const posts = (await getPosts()) || [];
+  return {
+    props: { posts }
+  };
+}
