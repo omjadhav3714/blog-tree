@@ -2,6 +2,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import Section from '../components/Section'
 
 const navigation = [
   { name: 'Home', href: '#' },
@@ -125,6 +126,7 @@ export default function About() {
           />
         </div>
       </div>
+      <Section />
     </>
   )
 }
