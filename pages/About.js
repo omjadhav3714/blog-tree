@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Section from '../components/Section'
+import Footer from '../components/Footer'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -76,7 +77,7 @@ export default function About() {
                       <div>
                         <img
                           className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                          src="/logo.png"
                           alt=""
                         />
                       </div>
@@ -127,6 +128,7 @@ export default function About() {
         </div>
       </div>
       <Section />
+      <Footer />
     </>
   )
 }
