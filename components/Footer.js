@@ -1,11 +1,12 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Footer = () => {
     return (
-        <footer class="bg-gray-200 text-center lg:text-left">
-            <div class="text-gray-700 text-center p-4 bg-white">
+        <footer className=" text-center lg:text-left">
+            <div className="text-gray-200 text-center p-4">
                 © 2022 Copyright :
-                <a class="text-gray-800" href="#"> Maitri Jhadanshi</a>
+                <Link className="text-gray-200" href="/"> Maitri Jhadanshi</Link>
             </div>
         </footer>
     )

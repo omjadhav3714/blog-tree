@@ -1,41 +1,87 @@
 import Hero from './../components/Hero'
-import PostCard from '../components/PostCard'
-import PostWidget from '../components/PostWidget'
-import Categories from '../components/Categories'
-import { getPosts } from '../services'
+import PostWidget from '../components/posts/PostWidget'
+import { firestore, postToJSON, fromMillis } from '../services/firebase'
+import React, { Suspense, useState } from 'react'
+import Loader from '../components/Loader'
 import FeaturedPosts from '../sections/FeaturedPosts'
-import Footer from '../components/Footer'
+import VerticalPostCard from '../components/posts/VerticalPostCard'
+import { motion } from 'framer-motion'
+import Loading from './loading'
 
-export default function Home({ posts }) {
-  return (
-    <>
-      <Hero />
-      <div className="container mx-auto px-10 mb-8">
-        <FeaturedPosts />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 col-span-1">
-            {posts.map((post, index) => (
-              <PostCard key={index} post={post.node} />
-            ))}
-          </div>
-          <div className="lg:col-span-4 col-span-1">
-            <div className="lg:sticky relative top-8">
-              <PostWidget />
-              <Categories />
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </>
-  )
+const LIMIT = 5;
+
+export async function getServerSideProps(context) {
+  const postsQuery = firestore
+    .collectionGroup('posts')
+    .where('published', '==', true)
+    .orderBy('createdAt', 'desc')
+    .limit(LIMIT);
+  const posts = (await postsQuery.get()).docs.map(postToJSON);
+
+  const featuredPostsQuery = firestore
+    .collectionGroup('posts')
+    .where('published', '==', true)
+    .where('featured', '==', true)
+    .orderBy('createdAt', 'desc')
+
+  const featuredPosts = (await featuredPostsQuery.get()).docs.map(postToJSON);
+
+  return {
+    props: { posts, featuredPosts },
+  };
 }
 
 
+export default function Home(props) {
+  const [posts, setPosts] = useState(props.posts);
+  const [loading, setLoading] = useState(false);
+  const [postsEnd, setPostsEnd] = useState(false);
 
-export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
-  return {
-    props: { posts }
+  const getMorePosts = async () => {
+    setLoading(true);
+    const last = posts[posts.length - 1];
+    const cursor = typeof last.createdAt === 'number' ? fromMillis(last.createdAt) : last.createdAt;
+    const query = firestore
+      .collectionGroup('posts')
+      .where('published', '==', true)
+      .orderBy('createdAt', 'desc')
+      .startAfter(cursor)
+      .limit(LIMIT);
+    const newPosts = (await query.get()).docs.map((doc) => doc.data());
+    setPosts(posts.concat(newPosts));
+    setLoading(false);
+    if (newPosts.length < LIMIT) {
+      setPostsEnd(true);
+    }
   };
+  return (
+    <Suspense fallback={<Loading/> }>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <Hero />
+      <div className="container mx-auto px-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-8 col-span-1">
+            <FeaturedPosts posts={props.featuredPosts} />
+
+          </div>
+          <div className="lg:col-span-4 col-span-1">
+            <div className="lg:sticky relative top-8">
+              <PostWidget posts={posts} />
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 pt-8">
+          <VerticalPostCard posts={posts} />
+        </div>
+        {!loading && !postsEnd && <div className="pt-4"><button className='bg-white rounded-lg p-2' onClick={getMorePosts}>Load more</button></div>}
+        <Loader show={loading} />
+        {postsEnd && 'You have reached the end!'}
+      </div>
+    </motion.div>
+    </Suspense>
+  )
 }
