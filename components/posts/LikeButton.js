@@ -27,6 +27,6 @@ export default function LikeButton({ postRef }) {
     return likeDoc?.exists ? (
         <button onClick={removeHeart}>💔 UnLike</button>
     ) : (
-        <button onClick={addHeart}>🫦 Like</button>
+        <button onClick={addHeart}>❤️ Like</button>
     );
 }

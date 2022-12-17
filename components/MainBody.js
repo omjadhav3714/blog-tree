@@ -14,9 +14,10 @@ function MainBody() {
                         <span className="block xl:inline">Welcome </span>{' '}
                         <span className="block text-white xl:inline">{username}</span>
                     </h1>
-                    <p className="mt-3 text-base text-gray-700 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                    <br />
+                    <span className="mt-3 text-base text-gray-700 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                         Read fresh and new blogs related to trees.
-                    </p>
+                    </span>
                     <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                         <div className="rounded-md shadow">
                             <LinkScroll

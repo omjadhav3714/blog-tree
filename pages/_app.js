@@ -2,7 +2,7 @@ import '../styles/globals.scss'
 import { useUserData } from '../services/hooks'
 import { UserContext } from '../services/context';
 import dynamic from 'next/dynamic';
-const Footer = dynamic(() => import('../components/Footer'))
+const Footer = dynamic(() => import('../components/Footer'), { suspense: true })
 
 
 function MyApp({ Component, pageProps }) {

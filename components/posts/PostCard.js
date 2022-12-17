@@ -16,7 +16,6 @@ export default function PostCardItem({ post }) {
                         <Image
                             alt={post.title}
                             layout="fill"
-                            objectFit='cover'
                             src={post.thumbnailURL}
                             style={{ 'cursor': 'auto' }}
                             unoptimized={true}
@@ -32,11 +31,11 @@ export default function PostCardItem({ post }) {
                             </span>
 
                         </div>
-                        <p className="leading-relaxed text-justify">
+                        <div className="leading-relaxed text-justify">
                             <ReactMarkdown>
                                 {post.content.replace(/!\[(.*?)\]\((.*?)\)/g, '').substring(0, 250) + '...'}
                             </ReactMarkdown>
-                        </p>
+                        </div>
 
                         <div className="flex pt-2">
                             <span className='flex justify-end ml-2 font-medium text-lg'>❤️ {post.likes || 0} likes</span>

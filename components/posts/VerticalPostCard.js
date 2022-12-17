@@ -13,8 +13,8 @@ function VerticalPostCardItem({ post }) {
             <div className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72" style={{ backgroundImage: `url('${post.thumbnailURL}')` }} />
             <div className="absolute rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-72" />
             <div className="flex flex-col rounded-lg p-4 items-center justify-center absolute w-full h-full">
-                <p className="text-white mb-4 text-shadow font-semibold text-xs">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
-                <p className="text-white mb-4 text-shadow font-semibold text-2xl text-center">{post.title}</p>
+                <span className="text-white mb-4 text-shadow font-semibold text-xs">{moment(post.createdAt).format('MMM DD, YYYY')}</span>
+                <span className="text-white mb-4 text-shadow font-semibold text-2xl text-center">{post.title}</span>
                 <span className='flex justify-end ml-2 font-medium text-lg text-white'>❤️ {post.likes || 0} likes</span>
 
                 <div className="flex items-center absolute bottom-5 w-full justify-center">
@@ -27,7 +27,7 @@ function VerticalPostCardItem({ post }) {
                         unoptimized={true}
                         loading="lazy"
                     />
-                    <p className="inline align-middle text-white text-shadow ml-2 font-medium">{post.username}</p>
+                    <span className="inline align-middle text-white text-shadow ml-2 font-medium">{post.username}</span>
 
                 </div>
             </div>
