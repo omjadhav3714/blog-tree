@@ -32,7 +32,6 @@ export default function PostWidget({ posts }) {
             <h3 className="text-xl mb-8 font-semibold border-b pb-4">Recent Posts</h3>
             <RecentPostCard posts={data} />
             {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
-            {/* <Loader show={loading} /> */}
             {postsEnd && 'You have reached the end!'}
         </div>
     )

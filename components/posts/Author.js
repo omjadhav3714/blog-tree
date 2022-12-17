@@ -6,11 +6,12 @@ const Author = ({ post }) => (
         <div className="absolute -top-14">
             <Image
                 alt={post.name}
-                unoptimized
                 height="100"
                 width="100"
                 className="align-middle rounded-full"
                 src={post.authorImage}
+                unoptimized={true}
+                loading="lazy"
             />
         </div>
         <h3 className="text-white mt-4 mb-4 text-xl font-bold">{post.username}</h3>

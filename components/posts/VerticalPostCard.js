@@ -19,12 +19,13 @@ function VerticalPostCardItem({ post }) {
 
                 <div className="flex items-center absolute bottom-5 w-full justify-center">
                     <Image
-                        unoptimized
                         alt={post.username}
                         height="30"
                         width="30"
                         className="align-middle drop-shadow-lg rounded-full"
                         src={post.authorImage}
+                        unoptimized={true}
+                        loading="lazy"
                     />
                     <p className="inline align-middle text-white text-shadow ml-2 font-medium">{post.username}</p>
 

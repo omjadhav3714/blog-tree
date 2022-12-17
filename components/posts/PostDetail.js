@@ -20,7 +20,7 @@ const PostDetail = ({ post, postRef }) => {
                                 width="30"
                                 className="align-middle rounded-full"
                                 src={post.authorImage}
-                                unoptimized
+                                unoptimized={true}
                                 loading='lazy'
                             />
                             <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.username}</p>
