@@ -85,7 +85,6 @@ const SocialShare = () => {
                 size='35'
                 round={true}
               >
-
               </EmailIcon>
             </EmailShareButton>
           </li>

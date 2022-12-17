@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import RecentPostCard from './RecentPostCard'
 import { firestore, fromMillis } from '../../services/firebase';
+import dynamic from 'next/dynamic';
+const RecentPostCard = dynamic(() => import('./RecentPostCard'))
 
 const LIMIT = 4;
 

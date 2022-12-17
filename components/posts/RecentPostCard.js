@@ -18,6 +18,7 @@ function RecentPostCardItem({ post }) {
                     width="60"
                     className="align-middle rounded-full"
                     src={post.authorImage}
+                    loading="lazy"
                 />
             </div>
             <div className="flex-grow ml-4">

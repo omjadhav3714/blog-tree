@@ -1,7 +1,8 @@
-import Header from './Header'
-import MainBody from './MainBody'
 import Lottie from 'react-lottie'
 import animationData from './assets/tree'
+import dynamic from 'next/dynamic'
+const Header = dynamic(() => import('./Header'))
+const MainBody = dynamic(() => import('./MainBody'))
 
 function Hero() {
     const defaultOptions = {

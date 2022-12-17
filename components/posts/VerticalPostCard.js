@@ -3,11 +3,9 @@ import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 export default function VerticalPostCard({ posts }) {
     return posts ? posts.map((post) => <VerticalPostCardItem post={post} key={post.slug} />) : null;
 }
-
 
 function VerticalPostCardItem({ post }) {
     return (
@@ -18,7 +16,7 @@ function VerticalPostCardItem({ post }) {
                 <p className="text-white mb-4 text-shadow font-semibold text-xs">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
                 <p className="text-white mb-4 text-shadow font-semibold text-2xl text-center">{post.title}</p>
                 <span className='flex justify-end ml-2 font-medium text-lg text-white'>❤️ {post.likes || 0} likes</span>
-                
+
                 <div className="flex items-center absolute bottom-5 w-full justify-center">
                     <Image
                         unoptimized
@@ -29,7 +27,7 @@ function VerticalPostCardItem({ post }) {
                         src={post.authorImage}
                     />
                     <p className="inline align-middle text-white text-shadow ml-2 font-medium">{post.username}</p>
-                    
+
                 </div>
             </div>
             <Link href={`/post/${post.username}/${post.slug}`}><span className="cursor-pointer absolute w-full h-full" /></Link>

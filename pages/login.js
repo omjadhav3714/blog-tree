@@ -1,11 +1,11 @@
 import { UserContext } from "../services/context";
 import { useContext } from "react";
-import Header from "../components/Header";
 import { motion } from 'framer-motion'
-import UserFormSection from "../components/auth/UserFormSection";
-import SignOutSection from "../components/auth/SignOutSection";
-import SignUpSection from "../components/auth/SignUpSection";
-
+import dynamic from "next/dynamic";
+const UserFormSection = dynamic(() => import('../components/auth/UserFormSection'))
+const SignOutSection = dynamic(() => import('../components/auth/SignOutSection'))
+const SignUpSection = dynamic(() => import('../components/auth/SignUpSection'))
+const Header = dynamic(() => import('../components/Header'))
 
 const login = (props) => {
 

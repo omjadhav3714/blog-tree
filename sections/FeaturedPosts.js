@@ -1,7 +1,8 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import PostCardItem from '../components/posts/PostCard';
+import dynamic from 'next/dynamic'
+const PostCardItem = dynamic(() => import('../components/posts/PostCard'))
 
 const responsive = {
     superLargeDesktop: {

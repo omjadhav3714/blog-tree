@@ -1,12 +1,13 @@
-import Hero from './../components/Hero'
-import PostWidget from '../components/posts/PostWidget'
 import { firestore, postToJSON, fromMillis } from '../services/firebase'
 import React, { Suspense, useState } from 'react'
-import Loader from '../components/Loader'
-import FeaturedPosts from '../sections/FeaturedPosts'
-import VerticalPostCard from '../components/posts/VerticalPostCard'
 import { motion } from 'framer-motion'
-import Loading from './loading'
+import dynamic from 'next/dynamic'
+const PostWidget = dynamic(() => import('../components/posts/PostWidget'))
+const VerticalPostCard = dynamic(() => import('../components/posts/VerticalPostCard'))
+const Loader = dynamic(() => import('../components/Loader'))
+const FeaturedPosts = dynamic(() => import('../sections/FeaturedPosts'))
+const Hero = dynamic(() => import('./../components/Hero'))
+const Loading = dynamic(() => import('./loading'))
 
 const LIMIT = 5;
 
@@ -55,33 +56,33 @@ export default function Home(props) {
     }
   };
   return (
-    <Suspense fallback={<Loading/> }>
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <Hero />
-      <div className="container mx-auto px-8 mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 col-span-1">
-            <FeaturedPosts posts={props.featuredPosts} />
+    <Suspense fallback={<Loading />}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <Hero />
+        <div className="container mx-auto px-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-8 col-span-1">
+              <FeaturedPosts posts={props.featuredPosts} />
 
-          </div>
-          <div className="lg:col-span-4 col-span-1">
-            <div className="lg:sticky relative top-8">
-              <PostWidget posts={posts} />
+            </div>
+            <div className="lg:col-span-4 col-span-1">
+              <div className="lg:sticky relative top-8">
+                <PostWidget posts={posts} />
+              </div>
             </div>
           </div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 pt-8">
+            <VerticalPostCard posts={posts} />
+          </div>
+          {!loading && !postsEnd && <div className="pt-4"><button className='bg-white rounded-lg p-2' onClick={getMorePosts}>Load more</button></div>}
+          <Loader show={loading} />
+          {postsEnd && 'You have reached the end!'}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 pt-8">
-          <VerticalPostCard posts={posts} />
-        </div>
-        {!loading && !postsEnd && <div className="pt-4"><button className='bg-white rounded-lg p-2' onClick={getMorePosts}>Load more</button></div>}
-        <Loader show={loading} />
-        {postsEnd && 'You have reached the end!'}
-      </div>
-    </motion.div>
+      </motion.div>
     </Suspense>
   )
 }

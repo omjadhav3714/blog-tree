@@ -1,9 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
-import LikeButton from './LikeButton';
-import AuthCheck from '../auth/AuthCheck';
 import Link from 'next/link';
+import Image from 'next/image';
+import dynamic from 'next/dynamic'
+const LikeButton = dynamic(() => import('./LikeButton'))
+const AuthCheck = dynamic(() => import('../auth/AuthCheck'))
 
 const PostDetail = ({ post, postRef }) => {
     return (
@@ -12,12 +14,14 @@ const PostDetail = ({ post, postRef }) => {
                 <div className="px-4 lg:px-0">
                     <div className="flex items-center mb-8 w-full">
                         <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
-                            <img
+                            <Image
                                 alt={post.username}
-                                height="30px"
-                                width="30px"
+                                height="30"
+                                width="30"
                                 className="align-middle rounded-full"
                                 src={post.authorImage}
+                                unoptimized
+                                loading='lazy'
                             />
                             <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.username}</p>
                         </div>

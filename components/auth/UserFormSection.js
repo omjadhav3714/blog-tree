@@ -4,8 +4,7 @@ import { firestore } from "../../services/firebase";
 import toast from "react-hot-toast";
 import debounce from "lodash.debounce";
 import { UserContext } from "../../services/context";
-import chooseUserNameAnimationData from '../assets/choose'
-
+import chooseUserNameAnimationData from "../assets/choose";
 
 const UserFormSection = () => {
     const chooseUserNameDefaultOptions = {

@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import Lottie from "react-lottie";
 import logoutAnimationData from "../assets/logout";
 
-
 const SignOutSection = () => {
     const logoutDefaultOptions = {
         loop: true,

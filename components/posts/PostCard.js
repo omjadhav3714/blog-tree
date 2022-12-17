@@ -1,12 +1,8 @@
 import React from 'react'
 import Link from 'next/link';
-import moment from 'moment'
 import ReactMarkdown from 'react-markdown';
-
-// export default function PostCard({ posts }) {
-//     return posts ? posts.map((post) => <PostCardItem post={post} key={post.slug} />) : null;
-// }
-
+import Image from 'next/image';
+import Loading from '../../pages/loading';
 
 export default function PostCardItem({ post }) {
     const wordCount = post?.content.trim().split(/\s+/g).length;
@@ -16,7 +12,18 @@ export default function PostCardItem({ post }) {
         <div className='bg-white rounded-lg'>
             <div className="container lg:px-2 lg:py-12 py-3 px-3 mx-auto" style={{ 'cursor': 'auto' }}>
                 <div className="lg:w-11/12 mx-auto flex flex-wrap">
-                    <img alt={post.title} className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={post.thumbnailURL} style={{ 'cursor': 'auto' }} />
+                    <div className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded relative">
+                        <Image
+                            alt={post.title}
+                            layout="fill"
+                            objectFit='cover'
+                            src={post.thumbnailURL}
+                            style={{ 'cursor': 'auto' }}
+                            unoptimized={true}
+                            loading='lazy'
+                            loader={<Loading />}
+                        />
+                    </div>
                     <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 p-4 mt-6 lg:mt-0" style={{ 'cursor': 'auto' }}>
                         <h1 className="text-gray-900 text-3xl title-font font-medium mb-1" style={{ 'cursor': 'auto' }}>{post.title}</h1>
                         <div className="flex mb-4">

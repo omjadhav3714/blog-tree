@@ -1,12 +1,12 @@
 import React from 'react'
-import Author from '../../../components/posts/Author';
-import PostDetail from '../../../components/posts/PostDetail';
 import { getUserWithUsername, postToJSON, firestore } from '../../../services/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
-import SocialShare from '../../../components/posts/SocialShare';
-import Header from '../../../components/Header';
 import { motion } from 'framer-motion'
-
+import dynamic from 'next/dynamic';
+const Author = dynamic(() => import('../../../components/posts/Author'))
+const PostDetail = dynamic(() => import('../../../components/posts/PostDetail'))
+const SocialShare = dynamic(() => import('../../../components/posts/SocialShare'))
+const Header = dynamic(() => import('../../../components/Header'))
 
 export async function getStaticProps({ params }) {
     const { username, slug } = params;

@@ -1,8 +1,9 @@
-import Section from '../../components/Section'
-import Header from '../../components/Header'
 import { motion } from 'framer-motion'
 import { Suspense } from 'react'
-import Loading from '../loading'
+import dynamic from 'next/dynamic'
+const Header = dynamic(() => import('../../components/Header'))
+const Section = dynamic(() => import('../../components/Section'))
+const Loading = dynamic(() => import('../loading'))
 
 export default function About() {
   return (
