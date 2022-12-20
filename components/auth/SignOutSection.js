@@ -24,7 +24,7 @@ const SignOutSection = () => {
     return (
         <div className="h-screen flex flex-col justify-center items-center">
             <div className="lg:w-96 md:w-96  sm:w-24 shadow-xl rounded p-5">
-                <h1 className="text-3xl text-white font-medium">Are you sure ?</h1>
+                <h1 className="text-3xl text-green-900 font-medium">Are you sure ?</h1>
                 <br />
                 <div>
                     <Lottie

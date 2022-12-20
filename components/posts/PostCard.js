@@ -9,13 +9,13 @@ export default function PostCardItem({ post }) {
     const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
     return (
-        <div className='bg-white rounded-lg'>
+        <div className='bg-white rounded-lg shadow-lg'>
             <div className="container lg:px-2 lg:py-12 py-3 px-3 mx-auto" style={{ 'cursor': 'auto' }}>
                 <div className="lg:w-11/12 mx-auto flex flex-wrap">
                     <div className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded relative">
                         <Image
                             alt={post.title}
-                            layout="fill"
+                            fill
                             src={post.thumbnailURL}
                             style={{ 'cursor': 'auto' }}
                             unoptimized={true}
@@ -31,7 +31,7 @@ export default function PostCardItem({ post }) {
                             </span>
 
                         </div>
-                        <div className="leading-relaxed text-justify">
+                        <div className="leading-relaxed text-justify sm:text-base text-xs">
                             <ReactMarkdown>
                                 {post.content.replace(/!\[(.*?)\]\((.*?)\)/g, '').substring(0, 250) + '...'}
                             </ReactMarkdown>
@@ -40,7 +40,7 @@ export default function PostCardItem({ post }) {
                         <div className="flex pt-2">
                             <span className='flex justify-end ml-2 font-medium text-lg'>❤️ {post.likes || 0} likes</span>
 
-                            <button className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">
+                            <button className="flex ml-auto text-green-100 bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">
                                 <Link href={`/post/${post.username}/${post.slug}`}>Read More </Link>
                             </button>
                         </div>

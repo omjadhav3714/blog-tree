@@ -29,7 +29,7 @@ const responsive = {
 
 const FeaturedPosts = ({ posts }) => {
     return (
-        <div className="mb-8" id='blogs'>
+        <div className="shadow-lg rounded-lg" id='blogs'>
             <Carousel
                 responsive={responsive}
                 autoPlay={true}

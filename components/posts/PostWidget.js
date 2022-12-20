@@ -3,7 +3,7 @@ import { firestore, fromMillis } from '../../services/firebase';
 import dynamic from 'next/dynamic';
 const RecentPostCard = dynamic(() => import('./RecentPostCard'))
 
-const LIMIT = 4;
+const LIMIT = 3;
 
 export default function PostWidget({ posts }) {
     const [data, setData] = useState(posts);
@@ -29,10 +29,10 @@ export default function PostWidget({ posts }) {
     };
     return (
         <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
-            <h3 className="text-xl mb-8 font-semibold border-b pb-4">Recent Posts</h3>
+            <h3 className="text-xl  mb-8 font-semibold border-b text-green-900 pb-4">Recent Posts</h3>
             <RecentPostCard posts={data} />
-            {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
-            {postsEnd && 'You have reached the end!'}
+            {!loading && !postsEnd && <button className='text-green-900' onClick={getMorePosts}>Load more</button>}
+            {postsEnd && <span className="text-green-900">You have reached the end!</span>}
         </div>
     )
 }

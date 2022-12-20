@@ -79,7 +79,7 @@ const UserFormSection = () => {
         !username && (
             <div className="h-screen flex flex-col justify-center items-center">
                 <div className="lg:w-96 md:w-96  sm:w-24 shadow-xl rounded p-5">
-                    <h1 className="text-3xl text-white font-medium">Choose Username</h1>
+                    <h1 className="text-3xl text-green-900 font-medium">Choose Username</h1>
                     <br />
                     <div>
                         <Lottie

@@ -10,7 +10,7 @@ const Hero = dynamic(() => import('./../components/Hero'), { suspense: true })
 const Loading = dynamic(() => import('./loading'), { suspense: true })
 const SEOHead = dynamic(() => import('../components/SEOHead'), { suspense: true })
 
-const LIMIT = 5;
+const LIMIT = 4;
 
 export async function getServerSideProps(context) {
   const postsQuery = firestore
@@ -25,7 +25,6 @@ export async function getServerSideProps(context) {
     .where('published', '==', true)
     .where('featured', '==', true)
     .orderBy('createdAt', 'desc')
-
   const featuredPosts = (await featuredPostsQuery.get()).docs.map(postToJSON);
 
   return {
@@ -74,7 +73,6 @@ export default function Home(props) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               <div className="lg:col-span-8 col-span-1">
                 <FeaturedPosts posts={props.featuredPosts} />
-
               </div>
               <div className="lg:col-span-4 col-span-1">
                 <div className="lg:sticky relative top-8">
@@ -85,9 +83,9 @@ export default function Home(props) {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 pt-8">
               <VerticalPostCard posts={posts} />
             </div>
-            {!loading && !postsEnd && <div className="pt-4"><button className='bg-white rounded-lg p-2' onClick={getMorePosts}>Load more</button></div>}
+            {!loading && !postsEnd && <div className="pt-4"><button className='bg-white text-green-900 rounded-lg p-2' onClick={getMorePosts}>Load more</button></div>}
             <Loader show={loading} />
-            {postsEnd && 'You have reached the end!'}
+            {postsEnd && <span className="text-green-900">You have reached the end!</span>}
           </div>
         </motion.div>
       </Suspense>
